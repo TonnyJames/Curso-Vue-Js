@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/vue.js"></script>
+    <title>Document</title>
+    <style>
+
+        .verde {
+            background-color: rgb(79, 255, 79);
+        }
+        .azul {
+            background-color: rgb(128, 128, 250);
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="dados">
+        {{ mensagem }} <br>
+        Valor: {{ valor }} <br>
+        Logado: {{ logado }} <br>
+        Hobbies: {{ hobbies[3] }} <br>
+        Perfil: {{ perfil.site }}, {{ perfil.cursos[0].nome }} <br> <br>
+
+
+        {{ somar() }} <br>
+        {{ subtrair() }} <br>
+        {{multilplicar()}} <br>
+        {{dividir()}} <br>
+        {{numeroAleatorio()}} <br><br>
+
+        <!-- Trabalhando com v-bind que é uma diretiva de ATRIBUTOS  -->
+        <a  v-bind:href="site">Link site</a>
+        <p>teste diretiva do v-bind</p>
+        <input type="text" v-bind:placeholder="placeholder"> 
+<!-- a forma short de usar o v-bind é manter apenas os dois pontos como no caso do checked abaixo  -->
+        <input type="checkbox" :checked="check"> <br><br>
+
+        {{recado}}
+        <input type="text" :class="1==2? 'verde' : estilo "><br>
+        {{2+2}} <br><br>
+
+        <!-- trabalhando com v-on que é uma diretiva de EVENTOS -->
+        <p>teste de diretiva do v-on</p>
+        <Input type="text" @keyup="imprimirTexto('passando parametro', 5, xyz)">
+            <!-- forma sugar de denotar o v-on  -->
+        <button v-on:click="mensagemAlerta($event)">Botão</button>
+
+    </div>
+
+
+    <script>
+
+        // vm = viewModel
+        const vm = new Vue({
+            el: '#dados', //#para selecionar por id / . para selecionar por class
+            data: { //variavel e atributos reativos
+                mensagem: 'primeiro template controlado pelo vue', //string
+                valorTotal: 150.47,
+                logado: false,
+                hobbies: [
+                    'dormir',
+                    'comer',
+                    'correr',
+                    'treinar'
+                ],
+                perfil: {
+                    nome: 'Tonny James',
+                    site: 'audioclave.com',
+                    idade: 33,
+                    cursos: [
+                        {
+                            nome: 'Spring boot',
+                            caragaHoraria: '18 horas'
+                        },
+                        {
+                            nome: 'Formação cast',
+                            caragaHoraria: "400 horas"
+                        }
+                    ]
+
+                },
+                n1: 10,
+                n2: 5,
+
+                site: 'https://google.com',
+                placeholder: 'test v-bind',
+                check: true,
+
+                recado: 'Expressão',
+                estilo: 'azul',
+
+                xyz: true
+            },
+            methods: {
+                somar: function somar () { //forma convencional de função
+                    return this.n1 + this.n2;
+                } ,
+                subtrair: function() { //forma anonima de função
+                    return this.n1 - this.n2;
+                },
+                multilplicar: () => { //arrow function
+                    return 4 * 2;  //não pode usar o this *** contexto léxico
+                },
+                dividir() { //forma mais elegante como no java 
+                    return this.n1 / this.n2;
+                },
+                numeroAleatorio(){
+                    return Math.random();
+                },
+
+                imprimirTexto(t, n, x){
+                    console.log(t)
+                    console.log(n)
+                    console.log(x)
+                },
+
+                mensagemAlerta(event){
+                    console.log(event)
+                }
+            },
+        }) 
+
+    </script>
+</body>
+
+</html>
