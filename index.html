@@ -22,10 +22,10 @@
 <body>
     <div id="app">
 
-        trabalhando com v-on que é uma diretiva de EVENTOS -->
+        <!-- trabalhando com v-on que é uma diretiva de EVENTOS -->
         <p>teste de diretiva do v-on</p>
         <Input type="text" @keyup="imprimirTexto('passando parametro', 5)">
-        forma sugar de denotar o v-on 
+        <!-- forma sugar de denotar o v-on  -->
         <button v-on:click="mensagemAlerta($event)">Botão</button>
 
     </div>
@@ -45,8 +45,8 @@
                     console.log(n)
                     console.log(this.xyz)
                 },
-                mensagemAlerta(){
-                    alert('mensagem de alerta')
+                mensagemAlerta(evento){
+                    console.log(evento)
                     
                 }
             },
