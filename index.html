@@ -11,14 +11,17 @@
         .verde {
             background-color: green;
         }
+
         .branco {
             background-color: white;
         }
+
         .azul {
-            background-color:blue;
+            background-color: blue;
         }
+
         .vermelho {
-            background-color:red;
+            background-color: red;
         }
 
         .borda {
@@ -40,18 +43,23 @@
 
 <body>
     <div id="app">
+        <a href="https://jorgesantana.net.br" 
+            target="_blank" 
+            v-on:click.prevent="prevenirComportamentoPadrao($event)">
+            Link
+        </a>
+        <br>
+        Mensagem: {{ msg }}
         <hr>
-        <div class="borda div-principal" :class="cor">
-            Cor: {{ cor }}
-            <br>
-            Posição X do mouse: {{ posicaoX }}
-            <br>
-            posição Y do mouse: {{ posicaoY }}
-        </div>
+        <button @Click.once="executarUmaVez()">Botão</button>
+        <p>Cliques: {{ cliques }}</p>
         <hr>
-        <div @click="mudarCor('verde')" class="borda div-comum"></div>
-        <div @mouseover="mudarCor('azul')" @mouseout="mudarCor('vermelho')" class="borda div-comum"></div>
-        <div @mousemove="coordenadas($event)" class="borda div-comum"></div>
+        <form @submit.prevent.once="prevenirUmaVez()">
+            <button type="submit">Enviar</button>
+        </form>
+        <hr>
+        <input type="text" @keyup.Shift.Enter="capturandoTeclas($event)">
+        <p>Teclas: {{ teclas }}</p>
     </div>
 
 
@@ -60,19 +68,26 @@
         const vm = new Vue({
             el: '#app', //#para selecionar por id / . para selecionar por class
             data: { //variavel e atributos reativo
-                cor: 'branco',
-                posicaoX: 0,
-                posicaoY: 0
+                msg: '',
+                cliques: 0,
+                formulario: '',
+                teclas: ''
             },
             methods: {
-
-                mudarCor(c) {
-                    this.cor = c
+                prevenirComportamentoPadrao() {
+                    this.msg = "comportamento padrão ativado"
                 },
 
-                coordenadas(e) {
-                    this.posicaoX = e.clientX
-                    this.posicaoY = e.clientY
+                executarUmaVez(){
+                    this.cliques++
+                },
+
+                prevenirUmaVez(){
+                    this.formulario = 'prevenindo o comportamento padrão'
+                },
+
+                capturandoTeclas(event){
+                    this.teclas = 'Modificadores encadeados para shift + enter'
                 }
             },
         })
