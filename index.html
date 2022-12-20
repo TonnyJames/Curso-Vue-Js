@@ -15,6 +15,9 @@
 <body>
     <div id="app">
         <ul>
+            <li v-for="n in numero">{{n}}</li>
+        </ul>
+        <ul>
             <li v-for="curso in cursos">{{curso}}</li>
             <br>
             <li v-for="curso in cursos" v-text="curso"></li>
@@ -74,7 +77,8 @@
                     {id: 1, publicacao: 'publicações 1'},
                     {id: 2, publicacao: 'publicações 2'},
                     {id: 3, publicacao: 'publicações 3'},
-                ]
+                ],
+                numero: 5,
             },
             methods: {
                 misturarArray(){
