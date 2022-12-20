@@ -14,28 +14,26 @@
 
 <body>
     <div id="app">
-        <p v-once>Saldo inicial: {{ saldo }}</p>
-        <p>Saldo atualizado: {{ saldo }}</p>
-        <input type="text" id="valor">
-        <button @click="creditar()">Creditar</button>
-        <button @click="debitar()">Debitar</button>
+        <ul>
+            <li v-for="curso in cursos">{{curso}}</li>
+            <br>
+            <li v-for="curso in cursos" v-text="curso"></li>
+            <br>
+            <li v-for="(curso, key) in cursos">{{key+1}} - {{curso}}</li>
+        </ul>
+        
     </div>
 
 
     <script>
         // vm = viewModel
         const vm = new Vue({
-            el: '#app', //# para selecionar por id / . para selecionar por class
+            el: '#app',
             data: {
-                saldo: 1100
+                cursos: ['Laravel', 'Web completo', 'Banco de dados', 'Solid', 'Angular']
             },
             methods: {
-                creditar(){
-                    this.saldo += parseFloat(valor.value)
-                },
-                debitar(){
-                    this.saldo -= parseFloat(valor.value)
-                }
+
 
             },
         })
