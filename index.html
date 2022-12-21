@@ -15,6 +15,13 @@
 <body>
     <div id="app">
         <ul>
+            <li v-for="c in comentarios">{{c.id}} - {{c.comentario}}</li>
+        </ul>
+        <button @click="adicionarElemento()">Adicionar</button>
+        <button @click="removerElemento()">Remover</button>
+        <button @click="modificarElemento()">Atualizar</button>
+        <hr>
+        <ul>
             <li v-for="n in numero">{{n}}</li>
         </ul>
         <ul>
@@ -62,6 +69,11 @@
         const vm = new Vue({
             el: '#app',
             data: {
+                comentarios: [
+                    { id: 1, comentario:'Comentário 1'},
+                    { id: 2, comentario:'Comentário 2'},
+                    { id: 3, comentario:'Comentário 3'},
+                ],
                 cursos: ['Laravel', 'Web completo', 'Banco de dados', 'Solid', 'Angular'],
                 cursos2: {
                     1000: {
@@ -89,6 +101,19 @@
                     misturado[2] = this.publicacoes[1]
 
                     this.publicacoes = misturado
+                },
+
+                adicionarElemento(){
+                   // this.comentarios[3] = { id: 4, comentario: 'Novo comentário'}
+                    //console.log(this.comentarios)
+                    this.comentarios.push({id: 4, comentario: 'Novo comentário'})
+                },
+                removerElemento(){
+                    this.comentarios.pop()
+                },
+                modificarElemento(){
+                    this.$set(this.comentarios, 1, {id: 2, comentario: 'Comentário 2 atualizado'}
+                    )
                 }
 
             },
