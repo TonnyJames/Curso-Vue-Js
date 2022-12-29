@@ -17,6 +17,27 @@
         <br>
         <!-- <input type="text" :value="paciente" @keyup="paciente = $event.target.value"> -->
         <input type="text" v-model="paciente">
+        <hr>
+        <input type="radio" value="f" v-model="sexo">Feminino
+        <input type="radio" value="m" v-model="sexo">Masculino
+        <br>
+        {{sexo}}
+        <hr>
+        <select v-model="plano">
+            <option value="" disabled> Selecione um plano</option>
+            <option value="1">Basico 1</option>
+            <option value="2">Basico 2</option>
+            <option value="3">Master</option>
+        </select>
+        <br> {{ plano }}
+        <hr>
+        <input type="checkbox" value="100" v-model="doencas">Asma 
+        <input type="checkbox" value="101" v-model="doencas">Diabetes melitus 1
+        <input type="checkbox" value="102" v-model="doencas">Bronquite 
+        <br>{{ doencas }}
+        <hr>
+        <textarea v-model="diagnostico" cols="30" rows="3"></textarea>
+        <br> {{ diagnostico }}
     </div>
 
     <script>
@@ -24,7 +45,11 @@
         const vm = new Vue({
             el: '#app',
             data: {
-                paciente: 'João da silva'
+                paciente: 'João da silva',
+                sexo: '',
+                plano: '',
+                doencas: [],
+                diagnostico: ''
             },
             methods: {},
             computed: {}
